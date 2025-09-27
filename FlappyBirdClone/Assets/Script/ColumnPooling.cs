@@ -41,4 +41,13 @@ public class ColumnPooling : MonoBehaviour
             // columns[columnPoolSize - 1] = columns[0];
         }
     }
+    public void ResetColumns()
+    {
+        for (int i = 0; i < columnPoolSize; i++)
+        {
+            columns[i].transform.position = objectPoolPosition;
+        }
+        currentColumn = 0;
+        timeSinceLastSpawned = spawnRate; // So that a column spawns immediately after reset
+    }
 }

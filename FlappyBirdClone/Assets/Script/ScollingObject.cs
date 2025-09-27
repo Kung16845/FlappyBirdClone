@@ -15,6 +15,9 @@ public class ScollingObject : MonoBehaviour
         {
             rb.linearVelocity = Vector2.zero;
         }
-        
+        else
+        {
+            rb.linearVelocity = new Vector2(GameManager.instance.scrollSpeed, 0);
+        }
     }
 }
