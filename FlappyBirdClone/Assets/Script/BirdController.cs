@@ -15,7 +15,7 @@ public class BirdController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
         if (isDead) return;
 
         if (Input.GetMouseButtonDown(0))
