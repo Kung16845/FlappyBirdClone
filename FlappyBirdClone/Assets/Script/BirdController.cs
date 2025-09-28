@@ -32,7 +32,9 @@ public class BirdController : MonoBehaviour
         isDead = true;
     }
     public void ResetAnim()
-    {
+    {   
+        anim.ResetTrigger("Die");
+        anim.ResetTrigger("Jump");
         anim.Play("Idle");
     }
 }
