@@ -6,7 +6,7 @@ public class ScollingObject : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity = new Vector2(GameManager.instance.scrollSpeed, 0);
+        rb.linearVelocity = new Vector2(GameManager.instance.currentScrollSpeed, 0);
     }
 
     void Update()
@@ -17,7 +17,7 @@ public class ScollingObject : MonoBehaviour
         }
         else
         {
-            rb.linearVelocity = new Vector2(GameManager.instance.scrollSpeed, 0);
+            rb.linearVelocity = new Vector2(GameManager.instance.currentScrollSpeed, 0);
         }
     }
 }

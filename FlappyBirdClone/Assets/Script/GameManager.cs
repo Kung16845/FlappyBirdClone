@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
@@ -13,10 +14,12 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI textHighScore;
     public TextMeshProUGUI textHighMainMenuScore;
     public bool isGameOver;
+    public float currentScrollSpeed = -1.5f;
     public float scrollSpeed = -1.5f;
     public GameObject gameOverPanel;
     public GameObject mainMenuPanel;
     public GameObject showHighScorePanel;
+    public float timeCount;
     void Awake()
     {
         if (instance == null)
@@ -30,17 +33,39 @@ public class GameManager : MonoBehaviour
         mainMenuPanel.SetActive(true);  
         showHighScorePanel.SetActive(false);
         gameOverPanel.SetActive(false);
+        isGameOver = true;
         highScore = PlayerPrefs.GetInt("HighScore", 0);
     }
+    void Update()
+    {
+        if (isGameOver) return;
+        timeCount += Time.deltaTime;
+        if (timeCount >= 10)
+        {
+            timeCount = 0;
+            if (currentScrollSpeed > -3.0f)
+            {
+                currentScrollSpeed -= 0.1f;
+                Debug.Log("Scroll Speed: " + currentScrollSpeed);
+            }
+            if (columnPooling.currentSpawnRate > 1.5f)
+            {
+                columnPooling.currentSpawnRate -= 0.1f;
+                Debug.Log("Spawn Rate: " + columnPooling.currentSpawnRate);
+            }
+        }
+    }
     public void NewGame()
-    {   
-        bird.gameObject.SetActive(true);    
-        mainMenuPanel.SetActive(false);  
+    {
+        bird.gameObject.SetActive(true);
+        mainMenuPanel.SetActive(false);
         gameOverPanel.SetActive(false);
         bird.ResetAnim();
         bird.isDead = false;
         isGameOver = false;
         score = 0;
+        timeCount = 0;
+        currentScrollSpeed = scrollSpeed;
         textScore.text = "Score : " + score.ToString();
         bird.transform.position = new Vector3(0, 0, 0);
         columnPooling.ResetColumns();

@@ -583,7 +583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &494019642
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1244,7 +1244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &855866572
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1505,6 +1505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   columnPoolSize: 5
   columnPrefab: {fileID: 7764990338371175647, guid: 5ad9fa37ae1d6d145bab631342d22a7e, type: 3}
+  currentSpawnRate: 4
   spawnRate: 4
   columnMin: -1
   columnMax: 3.5
@@ -2747,10 +2748,12 @@ MonoBehaviour:
   textHighScore: {fileID: 419416384}
   textHighMainMenuScore: {fileID: 1989746162}
   isGameOver: 0
+  currentScrollSpeed: -1.5
   scrollSpeed: -1.5
   gameOverPanel: {fileID: 277311017}
   mainMenuPanel: {fileID: 855866571}
   showHighScorePanel: {fileID: 494019641}
+  timeCount: 0
 --- !u!1 &1575830572
 GameObject:
   m_ObjectHideFlags: 0

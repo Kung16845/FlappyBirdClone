@@ -4,6 +4,7 @@ public class ColumnPooling : MonoBehaviour
 {
     public int columnPoolSize = 5;
     public GameObject columnPrefab;
+    public float currentSpawnRate = 4f;
     public float spawnRate = 4f;
     public float columnMin = -1f;
     public float columnMax = 3.5f;
@@ -24,7 +25,7 @@ public class ColumnPooling : MonoBehaviour
     void Update()
     {
         timeSinceLastSpawned += Time.deltaTime;
-        if (!GameManager.instance.isGameOver && timeSinceLastSpawned >= spawnRate)
+        if (!GameManager.instance.isGameOver && timeSinceLastSpawned >= currentSpawnRate)
         {
             timeSinceLastSpawned = 0;
             float spawnYPosition = Random.Range(columnMin, columnMax);
@@ -34,20 +35,16 @@ public class ColumnPooling : MonoBehaviour
             {
                 currentColumn = 0;
             }
-            // for (int i = 1; i < columnPoolSize; i++)
-            // {
-            //     columns[i - 1] = columns[i];
-            // }
-            // columns[columnPoolSize - 1] = columns[0];
         }
     }
     public void ResetColumns()
-    {
+    {   
+        currentSpawnRate = spawnRate;
         for (int i = 0; i < columnPoolSize; i++)
         {
             columns[i].transform.position = objectPoolPosition;
         }
         currentColumn = 0;
-        timeSinceLastSpawned = spawnRate; // So that a column spawns immediately after reset
+        timeSinceLastSpawned = currentSpawnRate; // So that a column spawns immediately after reset
     }
 }
