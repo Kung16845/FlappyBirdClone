@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
         bird.gameObject.SetActive(true);    
         mainMenuPanel.SetActive(false);  
         gameOverPanel.SetActive(false);
+        bird.ResetAnim();
         bird.isDead = false;
         isGameOver = false;
         score = 0;
@@ -47,12 +48,14 @@ public class GameManager : MonoBehaviour
     public void BirdScored()
     {
         if (isGameOver) return;
+        AudioManager.instance.PlaySoundEffect(Sound.Score);
         score++;
         textScore.text = "Score : " + score.ToString();
         Debug.Log("Score: " + score);
     }
     public void BirdDied()
-    {
+    {   
+        AudioManager.instance.PlaySoundEffect(Sound.Die);
         isGameOver = true;
         gameOverPanel.SetActive(true);
         if (score > highScore)
