@@ -33,8 +33,6 @@ public class BirdController : MonoBehaviour
     }
     public void ResetAnim()
     {
-        anim.ResetTrigger("Jump");
-        anim.ResetTrigger("Die");
-        anim.SetTrigger("Idle");
+        anim.Play("Idle");
     }
 }
